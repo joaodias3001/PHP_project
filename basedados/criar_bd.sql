@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25-Mar-2024 às 18:27
+-- Tempo de geração: 29-Mar-2024 às 16:50
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -29,12 +29,21 @@ USE `lpi_tp`;
 -- Estrutura da tabela `curso`
 --
 
-DROP TABLE IF EXISTS `curso`;
 CREATE TABLE `curso` (
   `id_curso` int(11) NOT NULL,
-  `descricao` varchar(50) NOT NULL,
-  `duracao` time NOT NULL
+  `descricao` varchar(100) NOT NULL,
+  `duracao` time NOT NULL,
+  `preco` decimal(8,2) DEFAULT NULL,
+  `nome` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `curso`
+--
+
+INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`) VALUES(13, 'Aprenda a programar em Python desde o básico até conceitos avançados.', '30:00:00', 99.99, 'Curso de Programação em Python');
+INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`) VALUES(14, 'Aprenda a desenvolver páginas web usando HTML, CSS e JavaScript.', '45:30:00', 129.99, 'Curso de Desenvolvimento Web');
+INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`) VALUES(15, 'Conheça os fundamentos da inteligência artificial e suas aplicações.', '20:15:00', 79.99, 'Curso de Introdução à Inteligência Artificial');
 
 -- --------------------------------------------------------
 
@@ -42,7 +51,6 @@ CREATE TABLE `curso` (
 -- Estrutura da tabela `inscricao`
 --
 
-DROP TABLE IF EXISTS `inscricao`;
 CREATE TABLE `inscricao` (
   `id_inscricao` int(11) NOT NULL,
   `id_utilizador` int(11) NOT NULL,
@@ -56,7 +64,6 @@ CREATE TABLE `inscricao` (
 -- Estrutura da tabela `nivel_acesso`
 --
 
-DROP TABLE IF EXISTS `nivel_acesso`;
 CREATE TABLE `nivel_acesso` (
   `id_nivel` int(11) NOT NULL,
   `descricao` varchar(50) NOT NULL
@@ -78,7 +85,6 @@ INSERT INTO `nivel_acesso` (`id_nivel`, `descricao`) VALUES(5, 'apagado');
 -- Estrutura da tabela `utilizador`
 --
 
-DROP TABLE IF EXISTS `utilizador`;
 CREATE TABLE `utilizador` (
   `id_utilizador` int(11) NOT NULL,
   `nome` varchar(60) NOT NULL,
@@ -124,6 +130,7 @@ ALTER TABLE `nivel_acesso`
 --
 ALTER TABLE `utilizador`
   ADD PRIMARY KEY (`id_utilizador`),
+  ADD UNIQUE KEY `unique_email` (`email`),
   ADD KEY `fk_chave_estrangeira_acesso` (`nivel_acesso`);
 
 --
@@ -131,10 +138,16 @@ ALTER TABLE `utilizador`
 --
 
 --
+-- AUTO_INCREMENT de tabela `curso`
+--
+ALTER TABLE `curso`
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT de tabela `utilizador`
 --
 ALTER TABLE `utilizador`
-  MODIFY `id_utilizador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_utilizador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restrições para despejos de tabelas
