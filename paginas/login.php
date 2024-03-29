@@ -60,18 +60,21 @@ session_start();
         if(isset($_POST['user_email']) && isset ($_POST['user_password'])){
         $email = $_POST['user_email'];
         $password = $_POST['user_password']; 
-        $query = "select nome,email from utilizador where email = '$email' and password = md5('$password')";
+        $query = "select nome,email,nivel_acesso from utilizador where email = '$email' and password = md5('$password')";
 
         $resultado = mysqli_query($conn,$query);
 
         if(mysqli_num_rows($resultado)>0){
             $dados_user = mysqli_fetch_assoc($resultado);
-            $_SESSION['nome'] = $dados_user['nome'];
-            $_SESSION['email'] = $dados_user['email'];
-            $_SESSION['nivel_acesso'] = $dados_user['nivel_acesso'];
-            $_SESSION['estaLogado'] = true;
-
-            header("location: ./home.php");
+            if($dados_user['nivel_acesso']=4 || $dados_user['nivel_acesso']=5 ){
+                echo '<div class="text-center"><h5> Aguarde até que um administrador valide o teu acesso </h5></div>'; 
+            } else{
+                $_SESSION['nome'] = $dados_user['nome'];
+                $_SESSION['email'] = $dados_user['email'];
+                $_SESSION['nivel_acesso'] = $dados_user['nivel_acesso'];
+                $_SESSION['estaLogado'] = true;
+                header("location: ./home.php");
+            }
         } else {
             echo '<div class="text-center"><h5> E-mail e/ou password inválidos!</h5></div>'; 
         }
