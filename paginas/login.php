@@ -64,7 +64,6 @@ session_start();
 
         $resultado = mysqli_query($conn,$query);
 
-        
         if(mysqli_num_rows($resultado)>0){
             $dados_user = mysqli_fetch_assoc($resultado);
             $_SESSION['nome'] = $dados_user['nome'];
