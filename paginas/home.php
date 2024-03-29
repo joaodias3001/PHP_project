@@ -26,7 +26,6 @@ session_start();
         height: 400px;
         padding-top: 100px;
     }
-    
     #main-banner> p{
         color: whitesmoke;
     }
@@ -45,7 +44,6 @@ session_start();
                 </button>
                 <a class="navbar-brand" href="#"><span>FormaçõesEST</span></a>
             </div>
-
 
             <div class="collapse navbar-collapse" id="menu-drop">
                 <ul class="nav navbar-nav">
