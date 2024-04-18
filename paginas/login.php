@@ -1,6 +1,10 @@
 <?php
+ob_start();
 include "../basedados/basedados.h";
 session_start();
+if(isset($_SESSION['estaLogado']) && $_SESSION['estaLogado']){
+    header("location: ./home.php");
+} 
 ?>
 
 
@@ -43,7 +47,7 @@ session_start();
 </style>
 <body>
     <div class="login-container">
-        <h2 class="text-center">Sign-Up</h2>
+        <h2 class="text-center">Login</h2>
         <form action="#" method="post">
             <div class="form-group">
                 <label for="email">E-mail:</label>
@@ -54,32 +58,53 @@ session_start();
                 <input type="password" class="form-control" id="password" name="user_password" placeholder="Digite sua senha" required>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+            <p class="text-center" style="margin-top: 10px;"><a href="registrar.php">Registe-se</a></p>
         </form>
         <p class="text-center" style="margin-top: 10px;"><a href="#">Esqueceu sua senha?</a></p>
-       <?php
+    <?php
+       
+       //verificar se os dados foram inseridos
         if(isset($_POST['user_email']) && isset ($_POST['user_password'])){
-        $email = $_POST['user_email'];
-        $password = $_POST['user_password']; 
-        $query = "select nome,email,nivel_acesso from utilizador where email = '$email' and password = md5('$password')";
+            $email = $_POST['user_email'];
+            $password = $_POST['user_password']; 
+            $query = "select id_utilizador,nome,email,nivel_acesso from utilizador where email = '$email' and password = md5('$password')";
 
-        $resultado = mysqli_query($conn,$query);
+            $resultado = mysqli_query($conn,$query);
+       
+            //verificar se foi retornado algum resultado
+            if(mysqli_num_rows($resultado)>0){
+                $dados_user = mysqli_fetch_assoc($resultado);
+                
+                //caso o nivel de acesso seja 4(não validade) ou 5(apagado)
+                if($dados_user['nivel_acesso']==4 || $dados_user['nivel_acesso']==5 ){
+                    echo '<div class="text-center"><h5> Aguarde até que um administrador valide o teu acesso </h5></div>'; 
+                } else{
+                    $_SESSION['id_utilizador'] = $dados_user['id_utilizador'];
+                    $_SESSION['nome'] = $dados_user['nome'];
+                    $_SESSION['email'] = $dados_user['email'];
+                    $_SESSION['nivel_acesso'] = $dados_user['nivel_acesso'];
+                    $_SESSION['estaLogado'] = true;
 
-        if(mysqli_num_rows($resultado)>0){
-            $dados_user = mysqli_fetch_assoc($resultado);
-            if($dados_user['nivel_acesso']=4 || $dados_user['nivel_acesso']=5 ){
-                echo '<div class="text-center"><h5> Aguarde até que um administrador valide o teu acesso </h5></div>'; 
-            } else{
-                $_SESSION['nome'] = $dados_user['nome'];
-                $_SESSION['email'] = $dados_user['email'];
-                $_SESSION['nivel_acesso'] = $dados_user['nivel_acesso'];
-                $_SESSION['estaLogado'] = true;
-                header("location: ./home.php");
+                    switch ($_SESSION['nivel_acesso']) {
+                        case 1:
+                            header("location: ./pagAluno.php");
+                            break;
+                        case 3:
+                            header("location: ./pagAdmin.php");
+                            break;
+                        case 2:
+                            header("location: ./pagDocente.php");
+                            break;
+                        default:
+                            header("location: ./home.php");
+                            break;
+                    }
+                }
+            } else {
+                echo '<div class="text-center"><h5> E-mail e/ou password inválidos!</h5></div>'; //caso não retorne nenhum resultado
             }
-        } else {
-            echo '<div class="text-center"><h5> E-mail e/ou password inválidos!</h5></div>'; 
         }
-    }
-    
+
     ?>
     </div>
     

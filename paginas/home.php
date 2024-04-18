@@ -10,13 +10,14 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--link bootstrap-->
     <link rel="stylesheet" href="bootstrap.min.css" media="screen">
-  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
     <title>Home</title>
 </head>
 <style>
     body {
       padding-top: 50px;
-      background-color: #f0f6fc; /* Cor de fundo agradável aos olhos */
+      background-color: #f0f6fc; 
     }
     .jumbotron {
         background-image: url(main_banner.jpg);
@@ -47,19 +48,20 @@ session_start();
 
             <div class="collapse navbar-collapse" id="menu-drop">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-                    <li><a href="">Formações</a></li>
+                    <li class="active"><a href="#">Formações</a></li>
                     <li><a href="">Contactos</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <?php
                     if(!isset($_SESSION['estaLogado'])){
                         echo ( '<li><a href="login.php">Login</a></li>');
+                        echo('<li><a href="registrar.php">Registar-se</a></li>');
                     } else { 
+                        echo '<li><a href="#">'.$_SESSION['nome'].'</a></li>';
                         echo ( '<li><a href="logout.php">Logout</a></li>');
                     } 
                     ?>
-                    <li><a href="registrar.php">Register</a></li>  
+                    
                 </ul>
             </div>
 
@@ -84,6 +86,7 @@ session_start();
             <?php 
                 $sql="select nome,descricao, duracao, preco from curso";
                 $result = mysqli_query($conn,$sql);
+                //buscar os cursos a base de dados e listar
                 if($result){
                     if(mysqli_num_rows($result)>0){
                         while($row = mysqli_fetch_assoc($result)){
@@ -95,23 +98,25 @@ session_start();
                                             <p>".$row['descricao']."</p>
                                             <p>Duração (horas) : ". $row['duracao']." </p>
                                             <p>Preço: $".$row['preco']."</p>
-                                            <p><a href='#' class='btn btn-primary' role='button'>Inscrever-se</a></p>
+                                            <p><a href='inscricao.php?nome=".$row['nome']."&descricao=".$row['descricao'].
+                                            "'class='btn btn-primary' role='button'>Inscrever-se</a></p>
                                         </div>
                                     </div>
                                 </div>"
                             );
                         }
+                      
                     }
                 }
+            
             ?>
           
         </div>
     </div>
 
-
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="bootstrap.min.js"></script>
-
 </body>
 
 </html>

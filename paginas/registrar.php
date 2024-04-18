@@ -76,7 +76,7 @@ session_start();
             $resultado = mysqli_query($conn,$query);
 
             if(mysqli_num_rows($resultado)>0){
-                echo '<div class="text-center"><h5> E-mail já está registrado!</h5></div>';
+                echo '<div class="text-center"><h5> E-mail já está registado!</h5></div>';
             } else {
                 $insert = "insert into utilizador (nome, email, password, nivel_acesso) values('$nome','$email',md5('$pass'),'$nivel_acesso')";
                 $validar = mysqli_query($conn,$insert);
