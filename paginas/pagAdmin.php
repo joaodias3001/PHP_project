@@ -68,7 +68,7 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 3) {
     </style>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
 
             <div class="navbar-header">
@@ -108,9 +108,8 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 3) {
                 <h1 class="display-3">Bem-vindo, <?php echo $_SESSION['nome']; ?>!</h1>
             </div>
             <ul class="dashboard-options">
-                <li><a href="gerenciar_usuarios.php">Gerenciar Usuários</a></li>
-                <li><a href="gerenciar_cursos.php">Gerenciar Cursos</a></li>
-                <!-- Adicione mais opções de gerenciamento conforme necessário -->
+                <li><a href="gerir_utilizadores.php">Gerenciar Usuários</a></li>
+                <li><a href="gerir_cursos.php">Gerenciar Cursos</a></li>
             </ul>
         </div>
     </div>

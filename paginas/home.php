@@ -96,10 +96,9 @@ session_start();
                                         <div class='caption'>
                                             <h3>".$row['nome'] ."</h3>
                                             <p>".$row['descricao']."</p>
-                                            <p>Duração (horas) : ". $row['duracao']." </p>
-                                            <p>Preço: $".$row['preco']."</p>
-                                            <p><a href='inscricao.php?nome=".$row['nome']."&descricao=".$row['descricao'].
-                                            "'class='btn btn-primary' role='button'>Inscrever-se</a></p>
+                                            <p><a href='curso.php?nome=".$row['nome']."&descricao=".$row['descricao'].
+                                            "&preco=".$row['preco']."&duracao=".$row['duracao'].
+                                            "'class='btn btn-primary' role='button'>Mais detalhes</a></p>
                                         </div>
                                     </div>
                                 </div>"

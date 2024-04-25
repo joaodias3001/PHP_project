@@ -2,13 +2,10 @@
 include '../basedados/basedados.h';
 session_start();
 
-if(!isset($_SESSION['estaLogado']) && !$_SESSION['estaLogado']){
-    $_SESSION['inscricao'] = true;
-    header("location: ./login.php");
-}
 $nome = $_GET["nome"];
 $descricao = $_GET["descricao"];
-
+$preco =$_GET["preco"];
+$duracao =$_GET["duracao"];
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +21,8 @@ $descricao = $_GET["descricao"];
     html, body {
         height: 100%;
     }
+
+
     
     .inscricao-container {
         max-width: 400px;
@@ -39,6 +38,8 @@ $descricao = $_GET["descricao"];
         font-weight: bold;
         
     }
+
+    
 
 </style>
 
@@ -77,16 +78,25 @@ $descricao = $_GET["descricao"];
             </div>
         </div>
 </nav>
-    <div class="container-fluid" style="margin-top: 80px;">
+    <div class="container curso" style="margin-top: 200px;">
             <div class="text-center">
                 <h1 class="display-3"><?php echo "$nome" ?></h1>
             </div>
+            <div class="text-center">
+                <h4 class="display-3"><?php echo "$descricao" ?></h4>
+            </div>
+            <div class="text-center">
+                <h4 class="display-3">Duração em horas: <?php echo "$duracao" ?></h4>
+             </div>
+            <div class="text-center">
+                 <h4 class="display-3"> Preço: <?php echo "$preco" ?>€</h4>
+            </div>
+            <div class="text-center">
+                <a href=""class='btn btn-primary' role='button'>Inscreva-se</a>
+            </div>
     </div>
-    <div class="container-fluid">
-        <div class="text-center">
-            <h4 class="display-3"><?php echo "$descricao" ?></h4>
-        </div>
-    </div>
+    
+  
     
    
 
