@@ -108,8 +108,9 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 3) {
                 <h1 class="display-3">Bem-vindo, <?php echo $_SESSION['nome']; ?>!</h1>
             </div>
             <ul class="dashboard-options">
-                <li><a href="gerenciar_usuarios.php">Gerenciar Usuários</a></li>
-                <li><a href="gerenciar_cursos.php">Gerenciar Cursos</a></li>
+                <li><a href="gerir_usuarios.php">Gerir Usuários</a></li>
+                <li><a href="gerir_inscricoes.php">Gerir Inscrições</a></li>
+                <li><a href="dados_pessoais.php">Dados Pessoais</a></li>
                 <!-- Adicione mais opções de gerenciamento conforme necessário -->
             </ul>
         </div>
