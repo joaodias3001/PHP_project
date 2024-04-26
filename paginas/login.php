@@ -85,6 +85,11 @@ if(isset($_SESSION['estaLogado']) && $_SESSION['estaLogado']){
                     $_SESSION['nivel_acesso'] = $dados_user['nivel_acesso'];
                     $_SESSION['estaLogado'] = true;
 
+                    if($_SESSION['tentandoInscrever']){
+                        header("location: ./inscricao.php");
+                        exit;
+                    }
+
                     switch ($_SESSION['nivel_acesso']) {
                         case 1:
                             header("location: ./pagAluno.php");

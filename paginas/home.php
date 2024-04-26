@@ -84,22 +84,22 @@ session_start();
         <hr>
         <div class="row">
             <?php 
-                $sql="select nome,descricao, duracao, preco from curso";
+                $sql="select * from curso";
                 $result = mysqli_query($conn,$sql);
                 //buscar os cursos a base de dados e listar
                 if($result){
                     if(mysqli_num_rows($result)>0){
                         while($row = mysqli_fetch_assoc($result)){
+                            $_SESSION['id_curso']=$row['id_curso'];
                             echo ( 
                                 "<div class='col-md-4'>
                                     <div class='thumbnail'>
                                         <div class='caption'>
                                             <h3>".$row['nome'] ."</h3>
                                             <p>".$row['descricao']."</p>
-                                            <p>Duração (horas) : ". $row['duracao']." </p>
-                                            <p>Preço: $".$row['preco']."</p>
-                                            <p><a href='inscricao.php?nome=".$row['nome']."&descricao=".$row['descricao'].
-                                            "'class='btn btn-primary' role='button'>Inscrever-se</a></p>
+                                            <p><a href='curso.php?nome=".$row['nome']."&descricao=".$row['descricao'].
+                                            "&preco=".$row['preco']."&duracao=".$row['duracao'].
+                                            "'class='btn btn-primary' role='button'>Mais detalhes</a></p>
                                         </div>
                                     </div>
                                 </div>"
