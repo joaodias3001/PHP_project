@@ -67,7 +67,7 @@ if(isset($_SESSION['estaLogado']) && $_SESSION['estaLogado']){
         if(isset($_POST['user_email']) && isset ($_POST['user_password'])){
             $email = $_POST['user_email'];
             $password = $_POST['user_password']; 
-            $query = "select id_utilizador,nome,email,nivel_acesso from utilizador where email = '$email' and password = md5('$password')";
+            $query = "select * from utilizador where email = '$email' and password = md5('$password')";
 
             $resultado = mysqli_query($conn,$query);
        
@@ -83,6 +83,7 @@ if(isset($_SESSION['estaLogado']) && $_SESSION['estaLogado']){
                     $_SESSION['nome'] = $dados_user['nome'];
                     $_SESSION['email'] = $dados_user['email'];
                     $_SESSION['nivel_acesso'] = $dados_user['nivel_acesso'];
+                    $_SESSION['data_nascimento'] = $dados_user['data_nascimento'];
                     $_SESSION['estaLogado'] = true;
 
                     if($_SESSION['tentandoInscrever']){

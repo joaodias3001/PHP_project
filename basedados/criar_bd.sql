@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25-Abr-2024 às 16:44
+-- Tempo de geração: 26-Abr-2024 às 16:16
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -56,7 +56,21 @@ CREATE TABLE `inscricao` (
   `id_inscricao` int(11) NOT NULL,
   `id_utilizador` int(11) NOT NULL,
   `id_curso` int(11) NOT NULL,
-  `data_inscricao` date NOT NULL
+  `data_inscricao` date NOT NULL,
+  `estaAtiva` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `mensagem`
+--
+
+CREATE TABLE `mensagem` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `mensagem` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -123,6 +137,12 @@ ALTER TABLE `inscricao`
   ADD KEY `fk_chave_estrangeira_curso` (`id_curso`);
 
 --
+-- Índices para tabela `mensagem`
+--
+ALTER TABLE `mensagem`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `nivel_acesso`
 --
 ALTER TABLE `nivel_acesso`
@@ -145,6 +165,12 @@ ALTER TABLE `utilizador`
 --
 ALTER TABLE `curso`
   MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de tabela `mensagem`
+--
+ALTER TABLE `mensagem`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `utilizador`
