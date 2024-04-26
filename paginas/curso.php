@@ -3,78 +3,81 @@ include '../basedados/basedados.h';
 include 'navbar.php';
 session_start();
 
-
 $nome = $_GET["nome"];
 $descricao = $_GET["descricao"];
 $preco = $_GET["preco"];
 $duracao = $_GET["duracao"];
-$_SESSION['idade_maxima'] = $_GET["idade_maxima"]
+$_SESSION['idade_maxima'] = $_GET["idade_maxima"];
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscrição</title>
-     <!-- Bootstrap CSS -->
-     <link rel="stylesheet" href="bootstrap.min.css" media="screen">
-</head>
-<style>
-    html, body {
-        height: 100%;
-    }
-    
-    .inscricao-container {
-        max-width: 400px;
-        width: 100%;
-        padding: 20px;
-        transform: translate(-50%, -50%);
-        position: absolute;
-        top: 50%;
-        left: 50%;
-    }
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 80px; 
+            background-color: #f8f9fa; 
+        }
 
-    .inscricao-container > h2 {
-        font-weight: bold;
+        .container {
+            max-width: 800px; 
+            margin: auto;
+            background-color: #fff; 
+            padding: 30px;
+            border-radius: 10px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        }
+
+        .curso-info {
+            margin-bottom: 30px;
+        }
+
+        .curso-info h1 {
+            color: #007bff; 
+        }
+
+        .curso-info p {
+            font-size: 18px;
+        }
+
+        .btn-inscrever {
+            font-size: 1.5rem;
+            padding: 15px 40px;
+            border-radius: 25px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+        }
+
         
-    }
-
-</style>
+    </style>
+</head>
 
 <body>
-    <?php exibirNavbar() ?>
-    <div class="container" style="margin-top: 80px;">
-        <div class="text-center">
-            <h1 class="display-3"><?php echo $nome ?></h1>
-        </div>
-    </div>
+    <?php exibirNavbar(); ?>
 
     <div class="container">
+        <div class="curso-info text-center">
+            <h1><?php echo $nome; ?></h1>
+            <p class="lead"><?php echo $descricao; ?></p>
+            <p><strong>Duração:</strong> <?php echo $duracao; ?> horas</p>
+            <p><strong>Preço:</strong> <?php echo $preco; ?>€</p>
+        </div>
+
         <div class="text-center">
-            <h4><?php echo $descricao ?></h4>
+            <a href="inscricao.php" class="btn btn-inscrever">Inscreva-se Agora</a>
         </div>
     </div>
 
-    <div class="container">
-        <div class="text-center">
-            <h4>Duração em horas: <?php echo $duracao ?></h4>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="text-center">
-            <h4>Preço: <?php echo $preco ?>€</h4>
-        </div>
-    </div>
-
-    <div class="container text-center" style="margin-top: 20px;">
-        <a href="inscricao.php" class="btn btn-primary btn-lg">Inscreva-se</a>
-    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="bootstrap.min.js"></script>
-
-    
 </body>
+
 </html>

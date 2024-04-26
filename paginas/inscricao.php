@@ -23,8 +23,8 @@ $data_nascimento_dt = new DateTime($data_nascimento);
 $data_hoje = new DateTime();
 
 // Calcular a idade do usuário
-$intervalo = $data_hoje->diff($data_nascimento_dt);
-$idade = $intervalo->y;
+$idade = $data_hoje->diff($data_nascimento_dt)->y;
+
 
 // Verificar se a idade é menor ou igual à idade máxima permitida
 if ($idade>= 18 && $idade <= $idade_maxima) {
