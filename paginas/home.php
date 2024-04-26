@@ -76,29 +76,7 @@ session_start();
         <hr>
         <div class="row">
             <?php 
-<<<<<<< HEAD
-                $sql="select nome,descricao, duracao, preco from curso";
-                $result = mysqli_query($conn,$sql);
-                //buscar os cursos a base de dados e listar
-                if($result){
-                    if(mysqli_num_rows($result)>0){
-                        while($row = mysqli_fetch_assoc($result)){
-                            echo ( 
-                                "<div class='col-md-4'>
-                                    <div class='thumbnail'>
-                                        <div class='caption'>
-                                            <h3>".$row['nome'] ."</h3>
-                                            <p>".$row['descricao']."</p>
-                                            <p><a href='curso.php?nome=".$row['nome']."&descricao=".$row['descricao'].
-                                            "&preco=".$row['preco']."&duracao=".$row['duracao'].
-                                            "'class='btn btn-primary' role='button'>Mais detalhes</a></p>
-                                        </div>
-                                    </div>
-                                </div>"
-                            );
-                        }
-                      
-=======
+
                 $sql = "SELECT * FROM curso";
                 $result = mysqli_query($conn, $sql);
                 if ($result && mysqli_num_rows($result) > 0) {
@@ -112,7 +90,7 @@ session_start();
                             '&preco='.$row['preco'].'&duracao='.$row['duracao'].'&idade_maxima='.$row['idade_maxima'].
                             '" class="btn btn-details" role="button">Mais detalhes</a></p>';
                         echo '</div></div></div>';
->>>>>>> branch-joao
+
                     }
                 }
             ?>
