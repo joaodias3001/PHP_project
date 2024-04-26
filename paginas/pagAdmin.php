@@ -1,5 +1,6 @@
 <?php
 include "../basedados/basedados.h";
+include 'navbar.php';
 session_start();
 
 if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 3) {
@@ -68,6 +69,7 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 3) {
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
 
@@ -102,6 +104,10 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 3) {
 
         </div>
     </nav>
+=======
+    <?php exibirNavbar()?>
+    
+>>>>>>> branch-joao
     <div class="container">
         <div class="dashboard-container">
             <div class="dashboard-welcome">
