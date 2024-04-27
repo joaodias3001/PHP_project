@@ -59,6 +59,10 @@ session_start();
                 <input type="text" class="form-control" id="email" name="register_email" placeholder="Digite seu e-mail" required >
             </div>
             <div class="form-group">
+                <label for="data_nascimento">Data de Nascimento:</label>
+                <input type="date" class="form-control" id="data" name="register_data" required>
+            </div>
+            <div class="form-group">
                 <label for="password">Senha:</label>
                 <input type="password" class="form-control" id="password" name="register_password" placeholder="Digite sua senha" required>
             </div>
@@ -66,10 +70,11 @@ session_start();
         </form>
         <?php
         
-        if(isset($_POST['register_nome']) && isset($_POST['register_email']) && isset($_POST['register_password'])) {
+        if(isset($_POST['register_nome']) && isset($_POST['register_email']) && isset($_POST['register_password']) && isset($_POST['register_data'])){
             $nome = test_input($_POST['register_nome']);
             $email = test_input($_POST['register_email']);
             $pass = test_input($_POST['register_password']);
+            $data_nascimento = $_POST['register_data'];
             $nivel_acesso = 4;
             $query = "select email from utilizador where email = '$email'";
 
@@ -78,7 +83,7 @@ session_start();
             if(mysqli_num_rows($resultado)>0){
                 echo '<div class="text-center"><h5> E-mail já está registado!</h5></div>';
             } else {
-                $insert = "insert into utilizador (nome, email, password, nivel_acesso) values('$nome','$email',md5('$pass'),'$nivel_acesso')";
+                $insert = "insert into utilizador (nome, email, password, nivel_acesso,data_nascimento) values('$nome','$email',md5('$pass'),'$nivel_acesso',' $data_nascimento')";
                 $validar = mysqli_query($conn,$insert);
 
                 if($validar) {

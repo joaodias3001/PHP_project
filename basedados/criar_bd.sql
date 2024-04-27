@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29-Mar-2024 às 16:50
+-- Tempo de geração: 26-Abr-2024 às 16:16
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -34,16 +34,17 @@ CREATE TABLE `curso` (
   `descricao` varchar(100) NOT NULL,
   `duracao` time NOT NULL,
   `preco` decimal(8,2) DEFAULT NULL,
-  `nome` varchar(60) DEFAULT NULL
+  `nome` varchar(60) DEFAULT NULL,
+  `idade_maxima` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `curso`
 --
 
-INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`) VALUES(13, 'Aprenda a programar em Python desde o básico até conceitos avançados.', '30:00:00', 99.99, 'Curso de Programação em Python');
-INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`) VALUES(14, 'Aprenda a desenvolver páginas web usando HTML, CSS e JavaScript.', '45:30:00', 129.99, 'Curso de Desenvolvimento Web');
-INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`) VALUES(15, 'Conheça os fundamentos da inteligência artificial e suas aplicações.', '20:15:00', 79.99, 'Curso de Introdução à Inteligência Artificial');
+INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`, `idade_maxima`) VALUES(13, 'Aprenda a programar em Python desde o básico até conceitos avançados.', '30:00:00', 99.99, 'Curso de Programação em Python', NULL);
+INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`, `idade_maxima`) VALUES(14, 'Aprenda a desenvolver páginas web usando HTML, CSS e JavaScript.', '45:30:00', 129.99, 'Curso de Desenvolvimento Web', NULL);
+INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`, `idade_maxima`) VALUES(15, 'Conheça os fundamentos da inteligência artificial e suas aplicações.', '20:15:00', 79.99, 'Curso de Introdução à Inteligência Artificial', NULL);
 
 -- --------------------------------------------------------
 
@@ -55,7 +56,21 @@ CREATE TABLE `inscricao` (
   `id_inscricao` int(11) NOT NULL,
   `id_utilizador` int(11) NOT NULL,
   `id_curso` int(11) NOT NULL,
-  `data_inscricao` date NOT NULL
+  `data_inscricao` date NOT NULL,
+  `estaAtiva` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `mensagem`
+--
+
+CREATE TABLE `mensagem` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `mensagem` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -90,16 +105,18 @@ CREATE TABLE `utilizador` (
   `nome` varchar(60) NOT NULL,
   `email` varchar(60) NOT NULL,
   `password` varchar(60) NOT NULL,
-  `nivel_acesso` int(11) NOT NULL
+  `nivel_acesso` int(11) NOT NULL,
+  `data_nascimento` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `utilizador`
 --
 
-INSERT INTO `utilizador` (`id_utilizador`, `nome`, `email`, `password`, `nivel_acesso`) VALUES(1, 'aluno', 'aluno', 'ca0cd09a12abade3bf0777574d9f987f', 1);
-INSERT INTO `utilizador` (`id_utilizador`, `nome`, `email`, `password`, `nivel_acesso`) VALUES(2, 'docente', 'docente', 'ac99fecf6fcb8c25d18788d14a5384ee', 2);
-INSERT INTO `utilizador` (`id_utilizador`, `nome`, `email`, `password`, `nivel_acesso`) VALUES(3, 'administrador', 'admin', '21232f297a57a5a743894a0e4a801fc3', 3);
+INSERT INTO `utilizador` (`id_utilizador`, `nome`, `email`, `password`, `nivel_acesso`, `data_nascimento`) VALUES(1, 'aluno', 'aluno', 'ca0cd09a12abade3bf0777574d9f987f', 1, NULL);
+INSERT INTO `utilizador` (`id_utilizador`, `nome`, `email`, `password`, `nivel_acesso`, `data_nascimento`) VALUES(2, 'docente', 'docente', 'ac99fecf6fcb8c25d18788d14a5384ee', 2, NULL);
+INSERT INTO `utilizador` (`id_utilizador`, `nome`, `email`, `password`, `nivel_acesso`, `data_nascimento`) VALUES(3, 'administrador', 'admin', '21232f297a57a5a743894a0e4a801fc3', 3, NULL);
+INSERT INTO `utilizador` (`id_utilizador`, `nome`, `email`, `password`, `nivel_acesso`, `data_nascimento`) VALUES(6, 'miguel', 'miguel', '81dc9bdb52d04dc20036dbd8313ed055', 4, NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -118,6 +135,12 @@ ALTER TABLE `inscricao`
   ADD PRIMARY KEY (`id_inscricao`),
   ADD KEY `fk_chave_estrangeira_utilizador` (`id_utilizador`),
   ADD KEY `fk_chave_estrangeira_curso` (`id_curso`);
+
+--
+-- Índices para tabela `mensagem`
+--
+ALTER TABLE `mensagem`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `nivel_acesso`
@@ -144,10 +167,16 @@ ALTER TABLE `curso`
   MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT de tabela `mensagem`
+--
+ALTER TABLE `mensagem`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `utilizador`
 --
 ALTER TABLE `utilizador`
-  MODIFY `id_utilizador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_utilizador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restrições para despejos de tabelas
