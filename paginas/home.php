@@ -87,6 +87,7 @@ session_start();
                         echo '<p>'.$row['descricao'].'</p>';
                         echo '<p><a href="curso.php?nome='.$row['nome'].'&descricao='.$row['descricao'].
                             '&preco='.$row['preco'].'&duracao='.$row['duracao'].'&idade_maxima='.$row['idade_maxima'].
+                            '&id_curso='.$row['id_curso'].
                             '" class="btn btn-details" role="button">Mais detalhes</a></p>';
                         echo '</div></div></div>';
                     }

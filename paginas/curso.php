@@ -8,6 +8,7 @@ $descricao = $_GET["descricao"];
 $preco = $_GET["preco"];
 $duracao = $_GET["duracao"];
 $_SESSION['idade_maxima'] = $_GET["idade_maxima"];
+$_SESSION['id_curso'] = $_GET["id_curso"];
 
 ?>
 
