@@ -81,7 +81,7 @@ if (!isset($_SESSION['estaLogado']) || !$_SESSION['estaLogado']) {
                 echo(
                 "<ul class='dashboard-options'>
                     <li><a href='gerenciar_usuarios.php'>Gerenciar Utilizadores</a></li>
-                    <li><a href='gerenciar_cursos.php'>Gerenciar Cursos</a></li>
+                    <li><a href='gerenciar_inscricoes.php'>Gerenciar Inscrições</a></li>
                 </ul>"
                 );
             } else if($_SESSION['nivel_acesso']==1){
@@ -94,7 +94,7 @@ if (!isset($_SESSION['estaLogado']) || !$_SESSION['estaLogado']) {
             else if($_SESSION['nivel_acesso']==2){
                 echo(
                         "<ul class='dashboard-options'>
-                            <li><a href='gerenciar_usuarios.php'>Gerenciar Inscrições</a></li>
+                            <li><a href='gerenciar_inscricoes.php'>Gerenciar Inscrições</a></li>
                         </ul>" 
                     );
             }
