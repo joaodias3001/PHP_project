@@ -72,7 +72,7 @@ $_SESSION['idade_maxima'] = $_GET["idade_maxima"];
         </div>
 
         <div class="text-center">
-            <a href="inscricao.php" class="btn btn-inscrever">Inscreva-se Agora</a>
+            <a href="inscricao.php" class="btn btn-inscrever">Inscreva-se Agora!</a>
         </div>
     </div>
 
