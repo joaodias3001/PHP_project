@@ -91,20 +91,7 @@ if(isset($_SESSION['estaLogado']) && $_SESSION['estaLogado']){
                         exit;
                     }
 
-                    switch ($_SESSION['nivel_acesso']) {
-                        case 1:
-                            header("location: ./pagAluno.php");
-                            break;
-                        case 3:
-                            header("location: ./pagAdmin.php");
-                            break;
-                        case 2:
-                            header("location: ./pagDocente.php");
-                            break;
-                        default:
-                            header("location: ./home.php");
-                            break;
-                    }
+                    header("location: ./pagPessoal.php");
                 }
             } else {
                 echo '<div class="text-center"><h5> E-mail e/ou password inválidos!</h5></div>'; //caso não retorne nenhum resultado

@@ -1,25 +1,7 @@
 <?php
 function exibirNavbar()
 {
-    $pag_pessoal = "";
-
-    if (isset($_SESSION['estaLogado']) && $_SESSION['estaLogado']) {
-        if (isset($_SESSION['nivel_acesso'])) {
-            switch ($_SESSION['nivel_acesso']) {
-                case 1:
-                    $pag_pessoal = "pagAluno.php";
-                    break;
-                case 2:
-                    $pag_pessoal = "pagDocente.php";
-                    break;
-                case 3:
-                    $pag_pessoal = "pagAdmin.php";
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
+    
     echo ('
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -45,7 +27,7 @@ function exibirNavbar()
         echo '<li><a href="registrar.php">Registar-se</a></li>';
     } else {
         echo '<li><a>Ola '.$_SESSION['nome'].'</a></li>';
-        echo '<li><a href="'.$pag_pessoal.'">Minha Área</a></li>';
+        echo '<li><a href="pagPessoal.php">Minha Área</a></li>';
         echo '<li><a href="logout.php">Logout</a></li>';
     }
 

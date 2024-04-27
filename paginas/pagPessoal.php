@@ -3,7 +3,7 @@ include "../basedados/basedados.h";
 include 'navbar.php';
 session_start();
 
-if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 3) {
+if (!isset($_SESSION['estaLogado']) || !$_SESSION['estaLogado']) {
     header("Location: login.php");
     exit;
 }
@@ -76,11 +76,34 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 3) {
             <div class="dashboard-welcome">
                 <h1 class="display-3">Bem-vindo, <?php echo $_SESSION['nome']; ?>!</h1>
             </div>
-            <ul class="dashboard-options">
-                <li><a href="gerenciar_usuarios.php">Gerenciar Usuários</a></li>
-                <li><a href="gerenciar_cursos.php">Gerenciar Cursos</a></li>
-                <!-- Adicione mais opções de gerenciamento conforme necessário -->
-            </ul>
+            <?php
+            if($_SESSION['nivel_acesso']==3){
+                echo(
+                "<ul class='dashboard-options'>
+                    <li><a href='gerenciar_usuarios.php'>Gerenciar Utilizadores</a></li>
+                    <li><a href='gerenciar_cursos.php'>Gerenciar Cursos</a></li>
+                </ul>"
+                );
+            } else if($_SESSION['nivel_acesso']==1){
+                echo(
+                    "<ul class='dashboard-options'>
+                        <li><a href='pagAluno.php'>Gerenciar minhas inscrições</a></li>
+                    </ul>"
+                    );
+            }
+            else if($_SESSION['nivel_acesso']==2){
+                echo(
+                        "<ul class='dashboard-options'>
+                            <li><a href='gerenciar_usuarios.php'>Gerenciar Inscrições</a></li>
+                        </ul>" 
+                    );
+            }
+
+            echo(
+                "<ul class='dashboard-options'>
+                    <li><a href='gerenciar_usuarios.php'>Gerenciar meu dados pessoais</a></li>
+                </ul>");
+            ?>
         </div>
     </div>
 
