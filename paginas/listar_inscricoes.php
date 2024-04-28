@@ -47,55 +47,56 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 2 && $_SESSI
     <?php exibirNavbar() ?>
    <div class="container dashboard-container" style="margin-top: 60px;">
         <div class="text-center">
-            <?php if ($_SESSION['nivel_acesso'] == 2) { ?>
-                <h1 class="display-3">Bem-vindo à Área do Docente, <?php echo $_SESSION['nome']; ?>!</h1>
-                <h3>Cursos lecionados:</h3>
-            <?php } elseif ($_SESSION['nivel_acesso'] == 3) { ?>
-                <h1 class="display-3">Bem-vindo à Área do Administrador, <?php echo $_SESSION['nome']; ?>!</h1>
-                <h3>Gerenciar inscrições:</h3>
-            <?php } ?>
+           <h3>Inscrições:</h3>
         </div>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Nome do Curso</th>
-                        <th>Candidatos Inscritos</th>
+                        <th>Nome do Candidato</th>
+                        <th>E-mail</th>
+                        <th>Data de nascimento</th>
+                        <th>Data de inscrição</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php 
+                    $nome_curso = $_GET['nome_curso'];
+                    
                     $resultado;
                     if($_SESSION['nivel_acesso']==3){
-                        $sql = "SELECT c.nome AS nome_curso,  
-                            (SELECT COUNT(*) FROM inscricao i WHERE c.id_curso = i.id_curso) AS total_inscritos
-                            FROM curso c";
-                            
+                        $sql = "SELECT i.id_inscricao, u.nome, u.email, u.data_nascimento, i.data_inscricao,i.estaAtiva FROM inscricao i 
+                                INNER JOIN utilizador u ON i.id_utilizador = u.id_utilizador
+                                INNER JOIN curso c ON i.id_curso = c.id_curso
+                                WHERE c.nome = '$nome_curso'";
+
                         $resultado = mysqli_query($conn, $sql);
                         }
                     if($_SESSION['nivel_acesso']==2){
-                        $sql = "SELECT c.nome AS nome_curso,  
-                               (SELECT COUNT(*) FROM inscricao i WHERE c.id_curso = i.id_curso) AS total_inscritos
-                               FROM curso c WHERE id_docente = ".$_SESSION['id_utilizador']."";
-                               
+                        $sql = "SELECT i.id_inscricao, u.nome, u.email, u.data_nascimento, i.data_inscricao,i.estaAtiva FROM inscricao i 
+                                INNER JOIN utilizador u ON i.id_utilizador = u.id_utilizador
+                                INNER JOIN curso c ON i.id_curso = c.id_curso
+                                WHERE c.nome = '$nome_curso' AND c.id_docente = ".$_SESSION['id_utilizador']."";
                         $resultado = mysqli_query($conn, $sql);
                     }
                     // Listar os cursos para gerenciar inscrições
                     if ($resultado && mysqli_num_rows($resultado) > 0) {
                         while ($row = mysqli_fetch_assoc($resultado)) {
                             echo "<tr>";
-                            echo "<td>".$row['nome_curso']."</td>";
-                            echo "<td>".$row['total_inscritos']."</td>";
-                            echo '<td><a href="listar_inscricoes.php?nome_curso=' . $row['nome_curso'] . '">Exibir listagem</a></td>';
+                            echo "<td>".$row['nome']."</td>";
+                            echo "<td>".$row['email']."</td>";
+                            echo "<td>".$row['data_nascimento']."</td>";
+                            echo "<td>".$row['data_inscricao']."</td>";
+                            if($row['estaAtiva']==0){
+                                echo '<td><a href="validar_inscricao.php?id_inscricao=' . $row['id_inscricao'] . '">Validar</a></td>';
+                            } else{
+                                echo '<td><a href="validar_inscricao.php?id_inscricao=' . $row['id_inscricao'] . '">Desativar</a></td>';
+                            }
+                            echo '<td><a href="validar_inscricao.php?id_inscricao=' . $row['id_inscricao'] . '">Eliminar</a></td>';
                             echo "</tr>";
                         }
                     } else {
-                        if ($_SESSION['nivel_acesso'] == 2) {
-                            echo "<tr><td colspan='4'>Você ainda não leciona nenhum curso.</td></tr>";
-                        } 
-                        if ($_SESSION['nivel_acesso'] == 3) {
-                            echo "<tr><td colspan='5'>Não há cursos para gerenciar inscrições.</td></tr>";
-                        }
+                            echo "<tr><td colspan='5'>Não há inscrições.</td></tr>";
                     }
                     ?>
                 </tbody>
