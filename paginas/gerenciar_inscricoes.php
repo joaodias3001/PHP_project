@@ -1,8 +1,10 @@
 <?php
+
 ob_start();
 include "../basedados/basedados.h";
 include 'navbar.php';
 session_start();
+
 if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 2 && $_SESSION['nivel_acesso'] != 3) {
     header("Location: login.php");
     exit;
@@ -63,11 +65,21 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 2 && $_SESSI
                 </thead>
                 <tbody>
                     <?php 
-                    $sql = "SELECT c.nome AS nome_curso,  
-                           (SELECT COUNT(*) FROM inscricao i WHERE c.id_curso = i.id_curso) AS total_inscritos
-                           FROM curso c";
-                           
-                    $resultado = mysqli_query($conn, $sql);
+                    $resultado;
+                    if($_SESSION['nivel_acesso']==3){
+                        $sql = "SELECT c.nome AS nome_curso,  
+                            (SELECT COUNT(*) FROM inscricao i WHERE c.id_curso = i.id_curso) AS total_inscritos
+                            FROM curso c";
+                            
+                        $resultado = mysqli_query($conn, $sql);
+                        }
+                    if($_SESSION['nivel_acesso']==2){
+                        $sql = "SELECT c.nome AS nome_curso,  
+                               (SELECT COUNT(*) FROM inscricao i WHERE c.id_curso = i.id_curso) AS total_inscritos
+                               FROM curso c WHERE id_docente = ".$_SESSION['id_utilizador']."";
+                               
+                        $resultado = mysqli_query($conn, $sql);
+                    }
                     // Listar os cursos para gerenciar inscrições
                     if ($resultado && mysqli_num_rows($resultado) > 0) {
                         while ($row = mysqli_fetch_assoc($resultado)) {
