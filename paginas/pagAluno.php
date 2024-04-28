@@ -54,24 +54,24 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 1) {
                 </thead>
                 <tbody>
                     <?php 
-                    $id_aluno = $_SESSION['id_utilizador'];
-                    $sql = "SELECT c.nome AS nome_curso, c.descricao, c.duracao, c.preco, i.data_inscricao 
-                            FROM curso c
-                            INNER JOIN inscricao i ON c.id_curso = i.id_curso
-                            WHERE i.id_utilizador = $id_aluno";
-                    $resultado = mysqli_query($conn, $sql);
-                    // Listar os cursos inscritos pelo aluno
-                    if ($resultado && mysqli_num_rows($resultado) > 0) {
-                        while ($row = mysqli_fetch_assoc($resultado)) {
-                            echo "<tr>";
-                            echo "<td>".$row['nome_curso']."</td>";
-                            echo "<td>".$row['duracao']."</td>";
-                            echo "<td>".$row['data_inscricao']."</td>";
-                            echo "</tr>";
+                        $id_aluno = $_SESSION['id_utilizador'];
+                        $sql = "SELECT c.nome AS nome_curso, c.descricao, c.duracao, c.preco, i.data_inscricao 
+                                FROM curso c
+                                INNER JOIN inscricao i ON c.id_curso = i.id_curso
+                                WHERE i.id_utilizador = $id_aluno";
+                        $resultado = mysqli_query($conn, $sql);
+                        // Listar os cursos inscritos pelo aluno
+                        if ($resultado && mysqli_num_rows($resultado) > 0) {
+                            while ($row = mysqli_fetch_assoc($resultado)) {
+                                echo "<tr>";
+                                echo "<td>".$row['nome_curso']."</td>";
+                                echo "<td>".$row['duracao']."</td>";
+                                echo "<td>".$row['data_inscricao']."</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='4'>Você ainda não se inscreveu em nenhum curso.</td></tr>";
                         }
-                    } else {
-                        echo "<tr><td colspan='4'>Você ainda não se inscreveu em nenhum curso.</td></tr>";
-                    }
                     ?>
                 </tbody>
             </table>

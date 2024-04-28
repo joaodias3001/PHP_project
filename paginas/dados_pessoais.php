@@ -1,5 +1,6 @@
 <?php
 include "../basedados/basedados.h";
+include 'navbar.php';
 session_start();
 ?>
 
@@ -9,7 +10,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Dados Pessoais</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
     <style>
         body {
             background-color: #f3f3f3;
@@ -21,7 +22,8 @@ session_start();
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin: 20px auto;
-            max-width: 400px;
+            max-width: 600px;
+            margin-top: 50px;
         }
         .dashboard-container h1 {
             text-align: center;
@@ -33,7 +35,8 @@ session_start();
     </style>
 </head>
 <body>
-    <div class="container">
+    <?php exibirNavbar() ?>
+    <div class="container" >
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="dashboard-container">
@@ -47,6 +50,10 @@ session_start();
                             <div class="form-group">
                                 <label for="email">Email:</label>
                                 <input type="email" id="email" name="user_email" class="form-control" value="<?php echo $_SESSION['email']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Data Nascimento:</label>
+                                <input type="date" id="data_nasc" name="user_data_nascimento" class="form-control" value="<?php echo  $_SESSION['data_nascimento']; ?>">
                             </div>
                         </div>
                         <div class="form-group logout-btn">
