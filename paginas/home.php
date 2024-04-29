@@ -2,6 +2,7 @@
 include '../basedados/basedados.h';
 include 'navbar.php';
 session_start();
+$_SESSION['tentandoInscrever']=false;
 ?>
 
 <!DOCTYPE html>
@@ -85,10 +86,7 @@ session_start();
                         echo '<div class="caption">';
                         echo '<h3>'.$row['nome'].'</h3>';
                         echo '<p>'.$row['descricao'].'</p>';
-                        echo '<p><a href="curso.php?nome='.$row['nome'].'&descricao='.$row['descricao'].
-                            '&preco='.$row['preco'].'&duracao='.$row['duracao'].'&idade_maxima='.$row['idade_maxima'].
-                            '&id_curso='.$row['id_curso'].
-                            '" class="btn btn-details" role="button">Mais detalhes</a></p>';
+                        echo '<p><a href="curso.php?id_curso='.$row['id_curso'].'" class="btn btn-details" role="button">Mais detalhes</a></p>';
                         echo '</div></div></div>';
                     }
                 }

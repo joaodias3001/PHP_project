@@ -3,12 +3,11 @@ include '../basedados/basedados.h';
 include 'navbar.php';
 session_start();
 
-$nome = $_GET["nome"];
-$descricao = $_GET["descricao"];
-$preco = $_GET["preco"];
-$duracao = $_GET["duracao"];
-$_SESSION['idade_maxima'] = $_GET["idade_maxima"];
-$_SESSION['id_curso'] = $_GET["id_curso"];
+if(!isset($_GET['id_curso'])){
+    header("location: ./home.php");
+}
+$id_curso=$_GET['id_curso'];
+
 
 ?>
 
@@ -66,15 +65,47 @@ $_SESSION['id_curso'] = $_GET["id_curso"];
 
     <div class="container">
         <div class="curso-info text-center">
-            <h1><?php echo $nome; ?></h1>
-            <p class="lead"><?php echo $descricao; ?></p>
-            <p><strong>Duração:</strong> <?php echo $duracao; ?> horas</p>
-            <p><strong>Preço:</strong> <?php echo $preco; ?>€</p>
-        </div>
+            <?php
+                $sql = "SELECT * FROM curso WHERE id_curso = $id_curso";
 
-        <div class="text-center">
-            <a href="inscricao.php" class="btn btn-inscrever">Inscreva-se Agora!</a>
+                $result=mysqli_query($conn,$sql);
+
+                if($result && mysqli_num_rows($result)>0){
+                    $row = mysqli_fetch_assoc($result);
+                    $nome = $row['nome'];
+                    $descricao = $row['descricao'];
+                    $duracao = $row['duracao'];
+                    $preco = $row['preco'];
+                    $capacidade_maxima = $row['capacidade_maxima'];
+                    $idade_maxima = $row['idade_maxima'];
+            ?>
+                <h1><?php echo $nome; ?></h1>
+                <p class="lead"><?php echo $descricao; ?></p>
+                <p><strong>Duração:</strong> <?php echo $duracao; ?> horas</p>
+                <p><strong>Preço:</strong> <?php echo $preco; ?>€</p>
         </div>
+        <div class='text-center'>
+            <?php
+                    if($capacidade_maxima==0){
+                        echo  "<p class='lead'>Infelizmente esta formação atingiu a capacidade maxima de inscrições.</p>";
+                    }else{
+                        if(isset($_SESSION['id_utilizador'])){
+                            $sql ="SELECT * FROM inscricao WHERE id_curso = $id_curso AND id_utilizador = ".$_SESSION['id_utilizador']. "";
+                            $result = mysqli_query($conn, $sql);
+        
+                            if ( mysqli_num_rows($result) > 0) {
+                                echo  "<p class='lead'>Você ja se encontra inscrito nesta formação.</p>";
+                                exit;
+                            } 
+                        } 
+                            echo '<a href="inscricao.php?id_curso=' . $id_curso . '&idade_maxima= '.$idade_maxima.'" class="btn btn-inscrever">Inscreva-se Agora!</a>'; 
+                    }
+                       
+                }
+                    
+                
+            ?>
+      
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

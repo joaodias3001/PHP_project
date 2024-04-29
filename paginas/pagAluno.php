@@ -58,7 +58,7 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 1) {
                         $sql = "SELECT c.nome AS nome_curso, c.descricao, c.duracao, c.preco, i.data_inscricao 
                                 FROM curso c
                                 INNER JOIN inscricao i ON c.id_curso = i.id_curso
-                                WHERE i.id_utilizador = $id_aluno";
+                                WHERE i.id_utilizador = $id_aluno and i.esta_ativa=true";
                         $resultado = mysqli_query($conn, $sql);
                         // Listar os cursos inscritos pelo aluno
                         if ($resultado && mysqli_num_rows($resultado) > 0) {
@@ -70,7 +70,7 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 1) {
                                 echo "</tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='4'>Você ainda não se inscreveu em nenhum curso.</td></tr>";
+                            echo "<tr><td colspan='4'>Você ainda não se inscreveu em nenhum curso ou aguarde que as tuas inscrições sejam validadas.</td></tr>";
                         }
                     ?>
                 </tbody>

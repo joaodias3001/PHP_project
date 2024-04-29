@@ -86,11 +86,6 @@ if(isset($_SESSION['estaLogado']) && $_SESSION['estaLogado']){
                     $_SESSION['data_nascimento'] = $dados_user['data_nascimento'];
                     $_SESSION['estaLogado'] = true;
 
-                    if($_SESSION['tentandoInscrever']){
-                        header("location: ./inscricao.php");
-                        exit;
-                    }
-
                     header("location: ./pagPessoal.php");
                 }
             } else {
