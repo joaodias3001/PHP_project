@@ -95,7 +95,7 @@ if (!isset($_SESSION['estaLogado']) || !$_SESSION['estaLogado']) {
             else if($_SESSION['nivel_acesso']==2){
                 echo(
                         "<ul class='dashboard-options'>
-                            <li><a href='gerenciar_inscricoes.php'>Gerenciar Inscrições</a></li>
+                            <li><a href='gerir_inscricoes.php'>Gerenciar Inscrições</a></li>
                         </ul>" 
                     );
             }

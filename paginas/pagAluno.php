@@ -49,7 +49,7 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 1) {
                         <th>Nome do Curso</th>
                         <th>Duração (horas)</th>
                         <th>Data de Inscrição</th>
-                        <th>Eliminar</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,6 +67,7 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 1) {
                                 echo "<td>".$row['nome_curso']."</td>";
                                 echo "<td>".$row['duracao']."</td>";
                                 echo "<td>".$row['data_inscricao']."</td>";
+                                echo "<td><a href=''>Anular inscrição</a></td>";
                                 echo "</tr>";
                             }
                         } else {

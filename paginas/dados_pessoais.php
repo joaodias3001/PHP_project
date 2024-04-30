@@ -55,6 +55,10 @@ session_start();
                                 <label for="email">Data Nascimento:</label>
                                 <input type="date" id="data_nasc" name="user_data_nascimento" class="form-control" value="<?php echo  $_SESSION['data_nascimento']; ?>">
                             </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="date" id="pass" name="user_pass" class="form-control" value="<?php echo  $_SESSION['']; ?>">
+                            </div>
                         </div>
                         <div class="form-group logout-btn">
                             <input type="submit" value="Salvar" class="btn btn-primary">
