@@ -87,9 +87,9 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 2 && $_SESSI
                             echo "<td>".$row['data_nascimento']."</td>";
                             echo "<td>".$row['data_inscricao']."</td>";
                             if($row['esta_ativa']==0){
-                                echo '<td><a href="validar_inscricao.php?id_inscricao=' . $row['id_inscricao'] . '&id_curso='.$id_curso.'">Validar</a></td>';
+                                echo '<td><a href="atualizar_inscricao.php?id_inscricao=' . $row['id_inscricao'] . '&id_curso='.$id_curso.'">Validar</a></td>';
                             } else{
-                                echo '<td><a href="validar_inscricao.php?id_inscricao=' . $row['id_inscricao'] .  '&id_curso='.$id_curso. '">Desativar</a></td>';
+                                echo '<td><a href="atualizar_inscricao.php?id_inscricao=' . $row['id_inscricao'] .  '&id_curso='.$id_curso. '">Desativar</a></td>';
                             }
                             echo '<td><a href="eliminar_inscricao.php?id_inscricao=' . $row['id_inscricao'] .'&id_curso='.$id_curso. '">Eliminar</a></td>';
                             echo "</tr>";

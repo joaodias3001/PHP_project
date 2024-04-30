@@ -55,7 +55,7 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 1) {
                 <tbody>
                     <?php 
                         $id_aluno = $_SESSION['id_utilizador'];
-                        $sql = "SELECT c.nome AS nome_curso, c.descricao, c.duracao, c.preco, i.data_inscricao 
+                        $sql = "SELECT c.nome AS nome_curso, c.descricao, c.duracao, c.preco, i.data_inscricao, i.id_inscricao, i.id_curso
                                 FROM curso c
                                 INNER JOIN inscricao i ON c.id_curso = i.id_curso
                                 WHERE i.id_utilizador = $id_aluno and i.esta_ativa=true";
@@ -67,7 +67,7 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 1) {
                                 echo "<td>".$row['nome_curso']."</td>";
                                 echo "<td>".$row['duracao']."</td>";
                                 echo "<td>".$row['data_inscricao']."</td>";
-                                echo "<td><a href=''>Anular inscrição</a></td>";
+                                echo '<td><a href="atualizar_inscricao.php?id_inscricao=' . $row['id_inscricao'] . '&id_curso='. $row['id_curso'].'">Anular Inscrição</a></td>';
                                 echo "</tr>";
                             }
                         } else {

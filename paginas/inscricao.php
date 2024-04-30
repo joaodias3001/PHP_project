@@ -50,10 +50,10 @@ if ($idade >= 18 && $idade <= $idade_maxima) {
                 mysqli_query($conn, $sql_atualiza_capacidade);
 
                 echo "<script>alert('Inscrição realizada com sucesso!')</script>";
-                echo "<script>window.location.href = './home.php';</script>";
-
+              
             } else {
                 echo "Erro ao realizar inscrição " ;
+                
             }
         } else {
             echo "<script>alert('Capacidade máxima de inscrições atingida para este curso.')</script>";
