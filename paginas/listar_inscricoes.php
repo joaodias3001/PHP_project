@@ -65,7 +65,7 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 2 && $_SESSI
                     
                     $resultado;
                     if($_SESSION['nivel_acesso']==3){
-                        $sql = "SELECT i.id_inscricao, u.nome, u.email, u.data_nascimento, i.data_inscricao,i.estaAtiva FROM inscricao i 
+                        $sql = "SELECT i.id_inscricao, u.nome, u.email, u.data_nascimento, i.data_inscricao,i.esta_ativa FROM inscricao i 
                                 INNER JOIN utilizador u ON i.id_utilizador = u.id_utilizador
                                 INNER JOIN curso c ON i.id_curso = c.id_curso
                                 WHERE c.nome = '$nome_curso'";
@@ -87,12 +87,12 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 2 && $_SESSI
                             echo "<td>".$row['email']."</td>";
                             echo "<td>".$row['data_nascimento']."</td>";
                             echo "<td>".$row['data_inscricao']."</td>";
-                            if($row['estaAtiva']==0){
+                            if($row['esta_ativa']==0){
                                 echo '<td><a href="validar_inscricao.php?id_inscricao=' . $row['id_inscricao'] . '">Validar</a></td>';
                             } else{
-                                echo '<td><a href="validar_inscricao.php?id_inscricao=' . $row['id_inscricao'] . '">Desativar</a></td>';
+                                echo '<td><a href="desativar_inscricao.php?id_inscricao=' . $row['id_inscricao'] . '">Desativar</a></td>';
                             }
-                            echo '<td><a href="validar_inscricao.php?id_inscricao=' . $row['id_inscricao'] . '">Eliminar</a></td>';
+                            echo '<td><a href="eliminar_inscricao.php?id_inscricao=' . $row['id_inscricao'] . '">Eliminar</a></td>';
                             echo "</tr>";
                         }
                     } else {
