@@ -73,7 +73,7 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 2 && $_SESSI
                         $resultado = mysqli_query($conn, $sql);
                         }
                     if($_SESSION['nivel_acesso']==2){
-                        $sql = "SELECT i.id_inscricao, u.nome, u.email, u.data_nascimento, i.data_inscricao,i.estaAtiva FROM inscricao i 
+                        $sql = "SELECT i.id_inscricao, u.nome, u.email, u.data_nascimento, i.data_inscricao,i.esta_ativa FROM inscricao i 
                                 INNER JOIN utilizador u ON i.id_utilizador = u.id_utilizador
                                 INNER JOIN curso c ON i.id_curso = c.id_curso
                                 WHERE c.nome = '$nome_curso' AND c.id_docente = ".$_SESSION['id_utilizador']."";

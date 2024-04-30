@@ -16,7 +16,8 @@ if (isset($_POST['user_email']) && isset ($_POST['user_nome'])) {
     $_SESSION['email'] = $email;
 
     // Redireciona de volta para a página de dados pessoais
-    header("Location: dados_pessoais.php");
+    echo "<script>alert('Alteração realizada com sucesso')</script>";
+    echo "<script>window.location.href = './gerir_utilizadores.php';</script>";
     exit();
 } else {
     // Se o formulário não foi submetido via POST, redireciona para a página de dados pessoais

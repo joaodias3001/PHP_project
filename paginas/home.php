@@ -2,7 +2,7 @@
 include '../basedados/basedados.h';
 include 'navbar.php';
 session_start();
-$_SESSION['tentandoInscrever']=false;
+
 ?>
 
 <!DOCTYPE html>
