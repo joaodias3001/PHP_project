@@ -88,14 +88,14 @@ if (!isset($_SESSION['estaLogado']) || !$_SESSION['estaLogado']) {
             } else if($_SESSION['nivel_acesso']==1){
                 echo(
                     "<ul class='dashboard-options'>
-                        <li><a href='pagAluno.php'>Gerenciar minhas inscrições</a></li>
+                        <li><a href='pagAluno.php'>Gerir minhas inscrições</a></li>
                     </ul>"
                     );
             }
             else if($_SESSION['nivel_acesso']==2){
                 echo(
                         "<ul class='dashboard-options'>
-                            <li><a href='gerir_inscricoes.php'>Gerenciar Inscrições</a></li>
+                            <li><a href='gerir_inscricoes.php'>Gerir Inscrições</a></li>
                         </ul>" 
                     );
             }

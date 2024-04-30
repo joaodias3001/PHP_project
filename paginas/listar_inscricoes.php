@@ -10,6 +10,7 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 2 && $_SESSI
     exit;
 }
     $nome = $_SESSION['nome'];
+    $id_curso = $_GET['id_curso'];
 
 ?>
 <!DOCTYPE html>
@@ -61,14 +62,12 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 2 && $_SESSI
                 </thead>
                 <tbody>
                     <?php 
-                    $nome_curso = $_GET['nome_curso'];
-                    
                     $resultado;
                     if($_SESSION['nivel_acesso']==3){
                         $sql = "SELECT i.id_inscricao, u.nome, u.email, u.data_nascimento, i.data_inscricao,i.esta_ativa FROM inscricao i 
                                 INNER JOIN utilizador u ON i.id_utilizador = u.id_utilizador
                                 INNER JOIN curso c ON i.id_curso = c.id_curso
-                                WHERE c.nome = '$nome_curso'";
+                                WHERE c.id_curso = '$id_curso'";
 
                         $resultado = mysqli_query($conn, $sql);
                         }
@@ -76,7 +75,7 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 2 && $_SESSI
                         $sql = "SELECT i.id_inscricao, u.nome, u.email, u.data_nascimento, i.data_inscricao,i.esta_ativa FROM inscricao i 
                                 INNER JOIN utilizador u ON i.id_utilizador = u.id_utilizador
                                 INNER JOIN curso c ON i.id_curso = c.id_curso
-                                WHERE c.nome = '$nome_curso' AND c.id_docente = ".$_SESSION['id_utilizador']."";
+                                WHERE c.id_curso = '$id_curso' AND c.id_docente = ".$_SESSION['id_utilizador']."";
                         $resultado = mysqli_query($conn, $sql);
                     }
                     // Listar os cursos para gerenciar inscrições
@@ -88,11 +87,11 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 2 && $_SESSI
                             echo "<td>".$row['data_nascimento']."</td>";
                             echo "<td>".$row['data_inscricao']."</td>";
                             if($row['esta_ativa']==0){
-                                echo '<td><a href="validar_inscricao.php?id_inscricao=' . $row['id_inscricao'] . '">Validar</a></td>';
+                                echo '<td><a href="validar_inscricao.php?id_inscricao=' . $row['id_inscricao'] . '&id_curso='.$id_curso.'">Validar</a></td>';
                             } else{
-                                echo '<td><a href="desativar_inscricao.php?id_inscricao=' . $row['id_inscricao'] . '">Desativar</a></td>';
+                                echo '<td><a href="validar_inscricao.php?id_inscricao=' . $row['id_inscricao'] .  '&id_curso='.$id_curso. '">Desativar</a></td>';
                             }
-                            echo '<td><a href="eliminar_inscricao.php?id_inscricao=' . $row['id_inscricao'] . '">Eliminar</a></td>';
+                            echo '<td><a href="eliminar_inscricao.php?id_inscricao=' . $row['id_inscricao'] .'&id_curso='.$id_curso. '">Eliminar</a></td>';
                             echo "</tr>";
                         }
                     } else {
