@@ -102,7 +102,7 @@ if (!isset($_SESSION['estaLogado']) || !$_SESSION['estaLogado']) {
 
             echo(
                 "<ul class='dashboard-options'>
-                    <li><a href='dados_pessoais.php'>Gerenciar meu dados pessoais</a></li>
+                    <li><a href='dados_pessoais.php'>Gerir meu dados pessoais</a></li>
                 </ul>");
             ?>
         </div>
