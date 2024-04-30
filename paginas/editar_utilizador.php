@@ -26,6 +26,7 @@ if($resultado && mysqli_num_rows($resultado)){
         $email_utilizador = $row['email'];
         $pass_utilizador = $row['password'];
         $data_nascimento_utilizador = $row['data_nascimento'];
+        $nivel_acesso = $row['nivel_acesso'];
     }
 
 } else {
@@ -70,7 +71,7 @@ if($resultado && mysqli_num_rows($resultado)){
             <div class="col-md-6 col-md-offset-3">
                 <div class="dashboard-container">
                     <h1>Editar Dados Pessoais</h1>
-                    <form action="atualizar_dados.php" method="POST">
+                    <form action="" method="POST">
                         <div class='dados-pessoais'>
                             <div class="form-group">
                                 <label for="">Nome:</label>
@@ -88,19 +89,48 @@ if($resultado && mysqli_num_rows($resultado)){
                                 <label for="">Password:</label>
                                 <input type="password" id="data_nasc" name="user_pass" class="form-control" value="<?php echo  $pass_utilizador; ?>">
                             </div>
-                            <div class="form-group">
-                                <label for="">Nivel de acesso:</label>
-                                <input type="" id="data_nasc" name="user_pass" class="form-control" value="">
-                            </div>
+                            <div-form-group>
+                                <label for="nivel_acesso">Nível de Acesso:</label>
+                                    <select id="nivel_acesso" name="nivel_acesso" value="<?php echo $nivel_acesso ?>">
+                                        <option value="4" <?php if($nivel_acesso==4) echo "selected";?>>Não validado</option>;
+                                        <option value="1" <?php if($nivel_acesso==1) echo "selected";?>>Aluno</option>
+                                        <option value="2" <?php if($nivel_acesso==2) echo "selected";?>>Docente</option>
+                                        <option value="3" <?php if($nivel_acesso==3) echo "selected";?>>Administrador</option>
+                                    </select><br><br>
+                            </div-form-group>
                         </div>
                         <div class="form-group logout-btn">
                             <input type="submit" value="Salvar" class="btn btn-primary">
-                        </div>
+                        </div> 
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <?php
+
+        if(isset($_POST['user_nome']) || isset($_POST['user_email']) || isset($_POST['user_data_nascimento']) || isset($_POST['user_pass']) || isset($_POST['nivel_acesso'])){
+            $novo_nome = $_POST['user_nome'];
+            $novo_email = $_POST['user_email'];
+            $novo_data_nascimento = $_POST['user_data_nascimento'];
+            $novo_pass = $_POST['user_pass'] ;
+            $novo_nivel_acesso = $_POST['nivel_acesso'];
+
+            if($novo_pass == $pass_utilizador){
+                $sql = "UPDATE utilizador SET nome = '$novo_nome', email = '$novo_email', data_nascimento = '$novo_data_nascimento', nivel_acesso = '$novo_nivel_acesso' WHERE id_utilizador = '$id_utilizador'";
+            } else {
+                $sql = "UPDATE utilizador SET nome = '$novo_nome', email = '$novo_email', data_nascimento = '$novo_data_nascimento', nivel_acesso = '$novo_nivel_acesso', password = md5('$novo_pass') WHERE id_utilizador = '$id_utilizador'";
+            }
+
+            $resultado = mysqli_query($conn,$sql);
+            if($resultado && mysqli_affected_rows($conn)>0){
+                echo "<script>alert('Alteração realizada com sucesso')</script>";
+                echo "<script>window.location.href = './gerir_utilizadores.php';</script>";
+            } 
+
+        }
+            
+    ?>
 
     <!-- Bootstrap JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
