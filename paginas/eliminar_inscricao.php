@@ -16,5 +16,6 @@ if(isset($_GET['id_inscricao'])) {
 } else {
     echo "ID de inscrição não fornecido.";
 }
+
 ?>
 
