@@ -80,9 +80,9 @@ if (!isset($_SESSION['estaLogado']) || !$_SESSION['estaLogado']) {
             if($_SESSION['nivel_acesso']==3){
                 echo(
                 "<ul class='dashboard-options'>
-                    <li><a href='gerenciar_usuarios.php'>Gerenciar Utilizadores</a></li>
-                    <li><a href='gerenciar_inscricoes.php'>Gerenciar Inscrições</a></li>
-                    <li><a href='gerenciar_inscricoes.php'>Gerenciar Cursos</a></li>
+                    <li><a href='gerir_utilizadores.php'>Gerenciar Utilizadores</a></li>
+                    <li><a href='gerir_inscricoes.php'>Gerenciar Inscrições</a></li>
+                    <li><a href=''>Gerenciar Cursos</a></li>
                 </ul>"
                 );
             } else if($_SESSION['nivel_acesso']==1){
