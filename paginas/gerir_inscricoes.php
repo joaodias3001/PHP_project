@@ -67,14 +67,14 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 2 && $_SESSI
                     <?php 
                     $resultado;
                     if($_SESSION['nivel_acesso']==3){
-                        $sql = "SELECT c.nome AS nome_curso,  
+                        $sql = "SELECT c.id_curso,c.nome AS nome_curso,  
                             (SELECT COUNT(*) FROM inscricao i WHERE c.id_curso = i.id_curso) AS total_inscritos
                             FROM curso c";
                             
                         $resultado = mysqli_query($conn, $sql);
                         }
                     if($_SESSION['nivel_acesso']==2){
-                        $sql = "SELECT c.nome AS nome_curso,  
+                        $sql = "SELECT c.id_curso, c.nome AS nome_curso,  
                                (SELECT COUNT(*) FROM inscricao i WHERE c.id_curso = i.id_curso) AS total_inscritos
                                FROM curso c WHERE id_docente = ".$_SESSION['id_utilizador']."";
                                
@@ -86,7 +86,7 @@ if (!isset($_SESSION['estaLogado']) || $_SESSION['nivel_acesso'] != 2 && $_SESSI
                             echo "<tr>";
                             echo "<td>".$row['nome_curso']."</td>";
                             echo "<td>".$row['total_inscritos']."</td>";
-                            echo '<td><a href="listar_inscricoes.php?nome_curso=' . $row['nome_curso'] . '">Exibir listagem</a></td>';
+                            echo '<td><a href="listar_inscricoes.php?id_curso=' . $row['id_curso'] . '">Exibir listagem</a></td>';
                             echo "</tr>";
                         }
                     } else {
