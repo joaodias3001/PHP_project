@@ -57,7 +57,7 @@ session_start();
                             </div>
                             <div class="form-group">
                                 <label for="password">Password:</label>
-                                <input type="date" id="pass" name="user_pass" class="form-control" value="<?php echo  $_SESSION['']; ?>">
+                                <input type="password" id="pass" name="user_pass" class="form-control" value="">
                             </div>
                         </div>
                         <div class="form-group logout-btn">

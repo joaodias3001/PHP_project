@@ -16,7 +16,7 @@ $id_utilizador = $_GET['id_utilizador'];
 
 
 $sql = "DELETE from utilizador WHERE id_utilizador='$id_utilizador'";
-echo $sql;
+
 
 $resultado = mysqli_query($conn,$sql);
 

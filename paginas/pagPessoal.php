@@ -82,7 +82,7 @@ if (!isset($_SESSION['estaLogado']) || !$_SESSION['estaLogado']) {
                 "<ul class='dashboard-options'>
                     <li><a href='gerir_utilizadores.php'>Gerir Utilizadores</a></li>
                     <li><a href='gerir_inscricoes.php'>Gerir Inscrições</a></li>
-                    <li><a href=''>Gerir Cursos</a></li>
+                    <li><a href='gerir_curso.php'>Gerir Cursos</a></li>
                 </ul>"
                 );
             } else if($_SESSION['nivel_acesso']==1){
