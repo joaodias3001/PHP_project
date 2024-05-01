@@ -18,7 +18,7 @@ $id_curso=$_GET['id_curso'];
 $id_utilizador = $_SESSION['id_utilizador'];
 
 
-// Obter a idade máxima permitida e a data de nascimento do usuário
+
 $idade_maxima = $_GET['idade_maxima'];
 $data_nascimento = $_SESSION['data_nascimento'];
 
@@ -26,10 +26,10 @@ $data_nascimento = $_SESSION['data_nascimento'];
 $data_nascimento = new DateTime($data_nascimento);
 $data_hoje = new DateTime();
 
-// Calcular a idade do usuário
+// Calcular a idade do utilizador
 $idade = $data_hoje->diff($data_nascimento)->y;
 
-// Verificar se a idade é menor ou igual à idade máxima permitida
+// Verificar se a idade é menor ou igual à idade máxima permitida pelo curso
 if ($idade >= 18 && $idade <= $idade_maxima) {
     // Consultar a capacidade máxima atual do curso
     $sql_capacidade = "SELECT capacidade_maxima FROM curso WHERE id_curso = $id_curso";
