@@ -44,8 +44,8 @@ CREATE TABLE `curso` (
 -- Extraindo dados da tabela `curso`
 --
 
-INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`, `idade_maxima`, `id_docente`, `capacidade_maxima`) VALUES(13, 'Aprenda a programar em Python desde o básico até conceitos avançados.', 30, 99.99, 'Curso de Programação em Python', 23, 8, 2);
-INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`, `idade_maxima`, `id_docente`, `capacidade_maxima`) VALUES(14, 'Aprenda a desenvolver páginas web usando HTML, CSS e JavaScript.', 45, 129.99, 'Curso de Desenvolvimento Web', 23, 8, 0);
+INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`, `idade_maxima`, `id_docente`, `capacidade_maxima`) VALUES(13, 'Aprenda a programar em Python desde o básico até conceitos avançados.', 30, 99.99, 'Curso de Programação em Python', NULL, 8, 2);
+INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`, `idade_maxima`, `id_docente`, `capacidade_maxima`) VALUES(14, 'Aprenda a desenvolver páginas web usando HTML, CSS e JavaScript.', 45, 129.99, 'Curso de Desenvolvimento Web', 23, NULL, 0);
 INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`, `idade_maxima`, `id_docente`, `capacidade_maxima`) VALUES(15, 'Conheça os fundamentos da inteligência artificial e suas aplicações.', 20, 79.99, 'Curso de Introdução à Inteligência Artificial', 23, NULL, 2);
 
 -- --------------------------------------------------------
@@ -115,10 +115,10 @@ CREATE TABLE `utilizador` (
 -- Extraindo dados da tabela `utilizador`
 --
 
-INSERT INTO `utilizador` (`id_utilizador`, `nome`, `email`, `password`, `nivel_acesso`, `data_nascimento`) VALUES(1, 'aluno', 'aluno@aluno.pt', 'ca0cd09a12abade3bf0777574d9f987f', 1, '2001-01-30');
+INSERT INTO `utilizador` (`id_utilizador`, `nome`, `email`, `password`, `nivel_acesso`, `data_nascimento`) VALUES(1, 'aluno', 'aluno', 'ca0cd09a12abade3bf0777574d9f987f', 1, '2001-01-30');
 INSERT INTO `utilizador` (`id_utilizador`, `nome`, `email`, `password`, `nivel_acesso`, `data_nascimento`) VALUES(3, 'administrador', 'admin', '21232f297a57a5a743894a0e4a801fc3', 3, NULL);
 INSERT INTO `utilizador` (`id_utilizador`, `nome`, `email`, `password`, `nivel_acesso`, `data_nascimento`) VALUES(7, 'docente', 'docente', 'ac99fecf6fcb8c25d18788d14a5384ee', 2, NULL);
-INSERT INTO `utilizador` (`id_utilizador`, `nome`, `email`, `password`, `nivel_acesso`, `data_nascimento`) VALUES(8, 'docente2', 'docente2', 'ac99fecf6fcb8c25d18788d14a5384ee', 2, NULL);
+
 
 --
 -- Índices para tabelas despejadas

@@ -50,6 +50,7 @@ if ($idade >= 18 && $idade <= $idade_maxima) {
                 mysqli_query($conn, $sql_atualiza_capacidade);
 
                 echo "<script>alert('Inscrição realizada com sucesso!')</script>";
+                echo "<script>window.location.href = './pagAluno.php';</script>";
               
             } else {
                 echo "Erro ao realizar inscrição " ;
