@@ -44,7 +44,7 @@ CREATE TABLE `curso` (
 -- Extraindo dados da tabela `curso`
 --
 
-INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`, `idade_maxima`, `id_docente`, `capacidade_maxima`) VALUES(13, 'Aprenda a programar em Python desde o básico até conceitos avançados.', 30, 99.99, 'Curso de Programação em Python', NULL, 8, 2);
+INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`, `idade_maxima`, `id_docente`, `capacidade_maxima`) VALUES(13, 'Aprenda a programar em Python desde o básico até conceitos avançados.', 30, 99.99, 'Curso de Programação em Python', 23, NULL, 2);
 INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`, `idade_maxima`, `id_docente`, `capacidade_maxima`) VALUES(14, 'Aprenda a desenvolver páginas web usando HTML, CSS e JavaScript.', 45, 129.99, 'Curso de Desenvolvimento Web', 23, NULL, 0);
 INSERT INTO `curso` (`id_curso`, `descricao`, `duracao`, `preco`, `nome`, `idade_maxima`, `id_docente`, `capacidade_maxima`) VALUES(15, 'Conheça os fundamentos da inteligência artificial e suas aplicações.', 20, 79.99, 'Curso de Introdução à Inteligência Artificial', 23, NULL, 2);
 
