@@ -74,9 +74,9 @@ include '../basedados/basedados.h';
             <!-- Informações da Empresa -->
             <div class="col-md-6 contact-info">
                 <h2>Informações da Empresa</h2>
-                <h4>Endereço: Rua da Empresa, 12345, Cidade, Estado</h4>
-                <h4>Telefone: (00) 1234-5678</h4>
-                <h4>Email: empresa@example.com</h4>
+                <h4>Endereço: Av. do Empresario, Campus da Talagueira, 6000-767 - Castelo Branco</h4>
+                <h4>Telefone: 999 999 999</h4>
+                <h4>Email: estformacoes@ipcb.com</h4>
             </div>
 
             <!-- Formulário de Contato -->
