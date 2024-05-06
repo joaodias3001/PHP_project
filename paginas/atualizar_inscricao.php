@@ -1,8 +1,8 @@
 <?php
 include "../basedados/basedados.h";
 session_start();
-if (!isset($_SESSION['estaLogado']) ) {
-    header("Location: login.php");
+if(!isset($_SESSION['estaLogado']) || !$_SESSION['estaLogado'] || $_SESSION['nivel_acesso']==4  || $_SESSION['nivel_acesso']==5){
+    header("location: ./login.php");
     exit;
 }
 

@@ -65,8 +65,8 @@ session_start();
     
     <div class="jumbotron">
         <div class="container">
-            <h1>Bem-vindo à Empresa de Formações</h1>
-            <p>A melhor escolha para sua formação profissional.</p>
+            <h1>Bem-vindo à EstFormações</h1>
+            <p>A número 1 em formações profissionais.</p>
         </div>
     </div>
 
