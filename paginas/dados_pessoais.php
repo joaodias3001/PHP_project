@@ -7,6 +7,12 @@ if(!isset($_SESSION['estaLogado']) || !$_SESSION['estaLogado'] || $_SESSION['niv
     header("location: ./login.php");
     exit;
 }
+$query = "SELECT password FROM utilizador WHERE id_utilizador = ".$_SESSION['id_utilizador']."";
+$res =  mysqli_query($conn,$query);
+if($res && mysqli_num_rows($res)>0){
+    $row=mysqli_fetch_assoc($res);
+    $pass_utilizador = $row['password'] ;
+}
 
 
 ?>
@@ -56,15 +62,15 @@ if(!isset($_SESSION['estaLogado']) || !$_SESSION['estaLogado'] || $_SESSION['niv
                             </div>
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="email" id="email" name="user_email" class="form-control" value="<?php echo $_SESSION['email']; ?>">
+                                <input type="text" id="email" name="user_email" class="form-control" value="<?php echo $_SESSION['email']; ?>">
                             </div>
                             <div class="form-group">
-                                <label for="email">Data Nascimento:</label>
+                                <label for="data_nasc">Data Nascimento:</label>
                                 <input type="date" id="data_nasc" name="user_data_nascimento" class="form-control" value="<?php echo  $_SESSION['data_nascimento']; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password:</label>
-                                <input type="password" id="pass" name="user_pass" class="form-control" value="">
+                                <input type="password" id="pass" name="user_pass" class="form-control" value="<?php echo $pass_utilizador ?>">
                             </div>
                         </div>
                         <div class="form-group logout-btn">

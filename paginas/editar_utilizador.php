@@ -79,7 +79,7 @@ if($resultado && mysqli_num_rows($resultado)){
                             </div>
                             <div class="form-group">
                                 <label for="">Email:</label>
-                                <input type="email" id="email" name="user_email" class="form-control" value="<?php echo $email_utilizador; ?>">
+                                <input type="text" id="email" name="user_email" class="form-control" value="<?php echo $email_utilizador; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="">Data Nascimento:</label>
