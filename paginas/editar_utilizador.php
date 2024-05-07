@@ -70,7 +70,7 @@ if($resultado && mysqli_num_rows($resultado)){
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="dashboard-container">
-                    <h1>Editar Dados Pessoais</h1>
+                    <h1>Editar Dados Utilizador</h1>
                     <form action="" method="POST">
                         <div class='dados-pessoais'>
                             <div class="form-group">
