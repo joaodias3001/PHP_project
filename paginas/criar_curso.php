@@ -138,22 +138,23 @@ if (isset($_GET['id_curso'])) {
             // Verifica se o ID do curso já existe
             if (isset($id_curso)) {
                 // Atualizar curso existente
-                $sql = "UPDATE curso SET nome = duracao='$duracao','$nome', descricao = '$descricao', capacidade_maxima = $capacidade_maxima,
-                        idade_maxima = $idade_maxima, preco = $preco, id_docente = $id_docente WHERE id_curso = $id_curso";
+                $sql = "UPDATE curso SET nome = '$nome',duracao='$duracao', descricao = '$descricao', capacidade_maxima = '$capacidade_maxima',
+                        idade_maxima = '$idade_maxima', preco = '$preco', id_docente = '$id_docente' WHERE id_curso = '$id_curso'";
             } else {
                 // Inserir novo curso
                 $sql = "INSERT INTO curso (nome, descricao, capacidade_maxima, duracao,idade_maxima, preco, id_docente) 
-                        VALUES ('$nome', '$descricao', '$capacidade_maxima', '$duracao''$idade_maxima', '$preco', '$id_docente')";
+                        VALUES ('$nome', '$descricao', '$capacidade_maxima', '$duracao','$idade_maxima', '$preco', '$id_docente')";
             }
 
+            $resultado = mysqli_query($conn, $sql);
             // Executar a consulta SQL
-            if (mysqli_query($conn, $sql)) {
+            if ($resultado) {
                 echo "<script>alert('Curso salvo com sucesso!')</script>";
                 echo "<script>window.location.href = './gerir_curso.php';</script>";
             } else {
                 echo "Erro ao salvar o curso: " . mysqli_error($conn);
             }
-        }
+        } 
 ?>
     
 
